@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euxo pipefail
+
 # Install K3S using Docker as it's container runtime
 curl -sfL https://get.k3s.io | sh -s - --docker 
 
