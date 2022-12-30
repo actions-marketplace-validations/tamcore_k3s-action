@@ -1,0 +1,21 @@
+name: 'k3s-action'
+
+description: 'Setup K3s'
+
+inputs:
+  k3s_channel:
+    description: 'K3S channel to install from. Defaults to latest, IF k3s_version is not defined'
+    required: false
+    default: 'stable'
+  k3s_version:
+    description: "Explicit K3S version to install. Takes precedence over k3s_channel"
+    required: false
+
+runs:
+  using: "composite"
+  steps:
+    - shell: bash
+      env:
+        INSTALL_K3S_CHANNEL: "${{ inputs.k3s_channel }}"
+        INSTALL_K3S_VERSION: "${{ inputs.k3s_version }}"
+      run: ${{ github.action_path }}/action.sh
